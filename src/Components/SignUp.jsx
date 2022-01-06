@@ -69,6 +69,11 @@ const SignUp = () => {
         draggable: true,
         progress: undefined,
         });
+      
+        setPhoneno("")
+        setName("")
+        setPassword("")
+        setConfirmPassword("")
     } catch (e) {
       toast.error(e.message, {
         position: "top-right",
