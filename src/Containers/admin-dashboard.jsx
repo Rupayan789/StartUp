@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import Sidebar from "../Components/AdminSidebar";
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -6,7 +6,6 @@ import { AiFillCloseCircle, AiOutlineLogout } from "react-icons/ai";
 import AllEmployee from "../Components/AllEmployee";
 import SignUp from "../Components/SignUp";
 import LeaveRequestAdmin from "../Components/leave-requests";
-import { useEffect } from "react/cjs/react.development";
 import EmployeeCard from "../Components/EmployeeCard";
 
 const AdminDashboard = () => {
