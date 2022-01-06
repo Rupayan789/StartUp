@@ -9,27 +9,33 @@ import {
   update,
 } from "firebase/database";
 import React, { useEffect, useState } from "react";
+import Loader from "react-loader-spinner";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { databaseRef as dbRef } from "../config";
 const MakeLeaveRequest = () => {
   const [leaveDate, setLeaveDate] = useState("");
   const [reason, setReason] = useState("");
-  const [lrLeft, setLrLeft] = useState(10);
-
+  const [loading, setLoading] = useState(true)
+  const [lrLeft, setLrLeft] = useState(10)
   let phoneno = "1234567891";
   let name = "Rupayan2";
-
+ 
   useEffect(() => {
+    setLoading(true)
     get(
       query(
         query(child(dbRef, "users"), orderByChild("phoneno")),
         equalTo(phoneno)
       )
     ).then((snapShot) => {
-      let leaves = Object.values(snapShot.val())[0].leaves;
-      setLrLeft(10 - leaves);
+      let leave = Object.values(snapShot.val())[0].leaves;
+      setLrLeft(10-leave)
+      setLoading(false)
     });
+
+
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -75,7 +81,7 @@ const MakeLeaveRequest = () => {
     update(userRef, {
       leaves: leaves !== undefined ? leaves + 1 : 0,
     });
-    setLrLeft(lrLeft - 1);
+
     await toast.success("Leave Request sent", {
       position: "top-right",
       autoClose: 2000,
@@ -87,8 +93,14 @@ const MakeLeaveRequest = () => {
     });
     window.location.reload();
   };
-
-  return lrLeft > 0 ? (
+ 
+  if (loading)
+  return (
+    <div className="min-h-screen flex justify-center items-center">
+      <Loader type="TailSpin" color="#00BFFF" height={80} width={80} />
+    </div>
+  );
+  return lrLeft <= 10 ? (
     <div className="p-2 mt-5 md:mt-0 md:p-5">
       <div>
         <ToastContainer
@@ -148,9 +160,9 @@ const MakeLeaveRequest = () => {
           </div>
         </form>
       </div>
-      <div className="mt-5 md:mt-10 bg-primary p-5 shadow-lg rounded-md text-white text-xl">
+      {/* <div className="mt-5 md:mt-10 bg-primary p-5 shadow-lg rounded-md text-white text-xl">
         Leave Requests left :{lrLeft}
-      </div>
+      </div> */}
     </div>
   ) : (
     <div className="px-5 py-5">

@@ -16,21 +16,21 @@ const Sidebar = ({ closeToggle }) => {
 
       <Link
         to="/admin"
-        onClick={() => closeToggle(false)}
+        onClick={() => !!closeToggle && closeToggle(false)}
         className="flex items-center hover:shadow-lg justify-center text-xl py-10 text-white   opacity-70 hover:opacity-100 hover:bg-secondary w-full px-5"
       >
         <div>All Employees</div>
       </Link>
       <Link
         to="/admin/add"
-        onClick={() => closeToggle(false)}
+        onClick={() => !!closeToggle && closeToggle(false)}
         className="flex items-center hover:shadow-lg justify-center text-xl py-10 text-white  opacity-70 hover:opacity-100 hover:bg-secondary w-full px-5"
       >
         <div>Add Employee</div>
       </Link>
       <Link
         to="/admin/leave"
-        onClick={() => closeToggle(false)}
+        onClick={() => !!closeToggle &&  closeToggle(false)}
         className="flex items-center hover:shadow-lg justify-center text-xl py-10 text-white  opacity-70 hover:opacity-100 hover:bg-secondary w-full px-5"
       >
         <div>Leave Requests</div>

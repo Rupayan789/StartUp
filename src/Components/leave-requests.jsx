@@ -12,7 +12,7 @@ import Loader from "react-loader-spinner";
 
 const LeaveRequestAdmin = () => {
   const [lr, setLr] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const user = JSON.parse(localStorage.getItem("user"));
   useEffect(() => {
     setLoading(true)
@@ -86,18 +86,18 @@ const LeaveRequestAdmin = () => {
 
     window.location.reload();
   };
-
+  if (loading)
+  return (
+    <div className="min-h-screen flex justify-center items-center">
+      <Loader type="TailSpin" color="#00BFFF" height={80} width={80} />
+    </div>
+  );
   return (
     <div className="p-2 md:p-5 min-h-screen z-20">
       <div>
         <h1 className=" text-2xl text-white py-4 px-3 pl-5  shadow-lg inset-y-2 rounded-lg h-full w-full bg-primary">
           List of all Recent Leave Requests
         </h1>
-        {loading ? (
-          <div className="flex justify-center items-center">
-            <Loader type="TailSpin" color="#00BFFF" height={80} width={80} />
-          </div>
-        ) : (
           <div className="mt-5  bg-gray-400 shadow-lg p-2 md:p-5 rounded-lg">
             {lr.length > 0 ? (
               lr.map((item, index) => (
@@ -145,7 +145,7 @@ const LeaveRequestAdmin = () => {
               </div>
             )}
           </div>
-        )}
+      
       </div>
     </div>
   );

@@ -16,7 +16,7 @@ const EmployeeSidebar = ({ closeToggle }) => {
         </h1>
         <Link
           to="/employee"
-          onClick={() => closeToggle(false)}
+          onClick={() => !!closeToggle && closeToggle(false)}
           className="flex items-center hover:shadow-lg justify-center text-xl py-10 text-white   opacity-70 hover:opacity-100 hover:bg-secondary w-full px-5"
 
         >
@@ -24,14 +24,14 @@ const EmployeeSidebar = ({ closeToggle }) => {
         </Link>
         <Link
           to="/employee/add-request"
-          onClick={() => closeToggle(false)}
+          onClick={() => !!closeToggle && closeToggle(false)}
           className="flex items-center hover:shadow-lg justify-center text-xl py-10 text-white  opacity-70 hover:opacity-100 hover:bg-secondary w-full px-5"
         >
           <div>Leave Request</div>
         </Link>
         <Link
           to="/employee/history"
-          onClick={() => closeToggle(false)}
+          onClick={() => !!closeToggle && closeToggle(false)}
           className="flex items-center hover:shadow-lg justify-center text-xl py-10 text-white  opacity-70 hover:opacity-100 hover:bg-secondary w-full px-5"
         >
           <div>History</div>

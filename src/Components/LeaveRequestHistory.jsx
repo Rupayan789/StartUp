@@ -1,20 +1,28 @@
 import { child, equalTo, get, orderByChild, query } from "firebase/database";
 import { databaseRef as dbRef } from "../config";
 import React, { useEffect, useState } from "react";
+import Loader from "react-loader-spinner";
 
 const LeaveRequestHistory = () => {
   const [lr, setLr] = useState([]);
+  const [loading, setLoading] = useState(true)
   const phoneno="1234567891"
 
   useEffect(() => {
+    setLoading(true)
     get(query(query(child(dbRef, "users"), orderByChild("phoneno")),equalTo(phoneno))).then(
       (snapShot) => {
         setLr(Object.values(Object.values(snapShot.val())[0].leaveRequests));
-       
+        setLoading(false)
       }
     );
   }, []);
-
+  if (loading)
+  return (
+    <div className="min-h-screen flex justify-center items-center">
+      <Loader type="TailSpin" color="#00BFFF" height={80} width={80} />
+    </div>
+  );
   return (
     <div className="p-2 md:p-5 min-h-screen z-20">
       <div>
