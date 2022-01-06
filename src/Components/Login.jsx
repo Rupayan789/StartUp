@@ -7,7 +7,6 @@ import {
 import { databaseRef as dbRef, fireDB } from "../config";
 import { Link, useNavigate } from "react-router-dom";
 import { child, equalTo, get, orderByChild, query } from "firebase/database";
-import { useEffect } from "react/cjs/react.development";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import  Loader  from "react-loader-spinner"
