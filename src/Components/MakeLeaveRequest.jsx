@@ -54,6 +54,7 @@ const MakeLeaveRequest = () => {
         progress: undefined,
       });
     }
+    setLoading(true)
     const newKey = await push(child(dbRef, "leave-requests")).key;
     await set(child(dbRef, "leave-requests/" + newKey), {
       date: leaveDate,
@@ -81,6 +82,9 @@ const MakeLeaveRequest = () => {
     update(userRef, {
       leaves: leaves !== undefined ? leaves + 1 : 0,
     });
+    setReason("")
+    setLeaveDate("")
+    setLoading(false)
 
     await toast.success("Leave Request sent", {
       position: "top-right",
@@ -91,7 +95,6 @@ const MakeLeaveRequest = () => {
       draggable: true,
       progress: undefined,
     });
-    window.location.reload();
   };
  
   if (loading)
